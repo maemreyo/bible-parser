@@ -56,6 +56,7 @@ class BibleParser {
         bookName,
       ),
     );
+
     // write to folder logic here
     this.writeFolder(language, translationId, bookId, chapter, bibleVerses);
 
@@ -65,7 +66,7 @@ class BibleParser {
   public parseFolder = () => {
     const files = this.readSourceFolder(this.sourceFolderPath);
 
-    const bibleVerses = this.parseFiles(this.sourceFolderPath, files);
+    this.parseFiles(this.sourceFolderPath, files);
   };
 
   private writeFolder(

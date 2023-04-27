@@ -6,9 +6,9 @@ export class BibleController {
   constructor(private readonly bibleService: BibleService) {}
 
   @Get()
-  parseBibleTextFolder() {
+  parseBibleTextFolder(sourceFolderPath: string, targetFolderPath?: string) {
     // Call the parseBibleTextFolder function from the service
-    const json = this.bibleService.parseBibleTextFolder('static/raw/vie2011');
+    const json = this.bibleService.parseBibleTextFolder(sourceFolderPath, targetFolderPath);
     return json;
   }
 }

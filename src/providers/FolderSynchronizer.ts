@@ -41,7 +41,7 @@ class FolderSynchronizer {
     // Check if target folder already exists
     if (this.checkTargetExists(this.targetFolderPath)) {
       console.log(
-        `Target folder ${this.targetFolderPath} already exists in data folder.`,
+        `Target folder ${this.targetFolderPath} already exists in data folder.\nPlease delete the old target folder, then the parser will generate a new one or you can change the target folder path.`,
       );
       return;
     }
