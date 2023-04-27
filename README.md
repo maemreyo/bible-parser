@@ -1,30 +1,6 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- This repo is to build a parser for the Bible text format.
 
 ## Installation
 
@@ -45,33 +21,66 @@ $ yarn run start:dev
 $ yarn run start:prod
 ```
 
-## Test
-
-```bash
-# unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
-```
-
 ## Docker
 
 ### Build the image
 - `docker build -t nestjs-dev-image .`
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
+## Demo
+- Create a `data` folder in `src` folder. Then use this rule to create some next few folders like this:
+```
+src
++-- data
++------ source
++---------- <bible's language (en, vi)>
++-------------- <translationId (asv, kjv, 1934, ...)>
+```
+- Then start the server, it will generate a new directory in `data` folder named `target`. And it will contain the JSON parsed files.
+- For example: We have a file named: `eng-asv_002_GEN_01_read.txt`. And its content will be:
+  ```
+    The First Book of Moses, Commonly Called Genesis.
+    Chapter 1.
+    In the beginning God created the heavens and the earth. 
+    And the earth was waste and void; and darkness was upon the face of the deep: and the Spirit of God moved upon the face of the waters. 
+    And God said, Let there be light: and there was light. 
+    And God saw the light, that it was good: and God divided the light from the darkness. 
+  ```
+- And the result should be:
+  ```
+    [
+      {
+        "language": "en",
+        "chapter": 1,
+        "verse": 1,
+        "content": "In the beginning God created the heavens and the earth.",
+        "translation_id": "asv",
+        "book_id": "GEN",
+        "book_name": "The First Book of Moses, Commonly Called Genesis."
+      },
+      {
+        "language": "en",
+        "chapter": 1,
+        "verse": 2,
+        "content": "And the earth was waste and void; and darkness was upon the face of the deep: and the Spirit of God moved upon the face of the waters.",
+        "translation_id": "asv",
+        "book_id": "GEN",
+        "book_name": "The First Book of Moses, Commonly Called Genesis."
+      },
+      {
+        "language": "en",
+        "chapter": 1,
+        "verse": 3,
+        "content": "And God said, Let there be light: and there was light.",
+        "translation_id": "asv",
+        "book_id": "GEN",
+        "book_name": "The First Book of Moses, Commonly Called Genesis."
+      },
+      ...
+    ]
+  ```
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Email: ngonhuthanhtrung1409@gmail.com
 
 ## License
 
